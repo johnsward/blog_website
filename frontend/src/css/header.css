@@ -1,0 +1,125 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white; /* White background for header */
+    z-index: 3; /* Ensure header is above the video */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: add a shadow for better separation */
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px; /* Add padding to nav to separate it from the content */
+}
+
+header nav .logo {
+    font-size: 24px;
+}
+
+.logo h1 {
+    font-weight: 300;
+}
+
+header nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #333; /* Adjusted to match the header background */
+    font-size: 16px;
+    transition: 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: green;
+    transform: scale(1.1);
+}
+
+.header-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+header nav .subscribe {
+    background-color: #6200ea;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+header nav .contact {
+    background-color: #6200ea;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+.background-header {
+    position: relative;
+    width: 100%;
+    height: 50vh; /* Adjust height as needed */
+    overflow: hidden;
+    z-index: 1; /* Ensure background is below the header */
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Cover the full height of the container */
+    overflow: hidden;
+    z-index: 1; /* Ensure video is below the content */
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.header-content {
+    position: relative;
+    margin-top: 25px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    z-index: 2; 
+}
+
+.header-content p {
+    margin: 0;
+    font-size: 16px;
+    color: #ccc;
+}
+
+.header-content h1 {
+    font-size: 36px;
+    margin: 10px 0;
+    color: #fff;
+}
+
+.header-content .pStory {
+    font-size: 18px;
+    color: #ccc;
+}
+
+
