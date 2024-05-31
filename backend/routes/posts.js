@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
+const Subscriber = require('../models/Subscriber');
 const upload = require('../middleware/Upload');
+const sendEmail = require('../utils/mailer');
 
-// Middleware to get a post by ID
 async function getPost(req, res, next) {
     let post;
     try {
@@ -19,6 +20,19 @@ async function getPost(req, res, next) {
     next();
 }
 
+//Get a single post by ID
+router.get('/:id', async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        if (!post) {
+            return res.status(404).json({ message: 'Post not found' });
+        }
+        res.json(post);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
 // Get all posts
 router.get('/', async (req, res) => {
     try {
@@ -31,18 +45,27 @@ router.get('/', async (req, res) => {
 
 // Create a post
 router.post('/', upload, async (req, res) => {
-    const imageUrl = req.files.image ? `/uploads/${req.files.image[0].filename}` : null;
-    const videoUrl = req.files.video ? `/uploads/${req.files.video[0].filename}` : null;
+    const imageUrls = req.files['images'] ? req.files['images'].map(file => `/uploads/${file.filename}`) : [];
+    const videoUrl = req.files['video'] ? `/uploads/${req.files['video'][0].filename}` : null;
 
     const post = new Post({
         title: req.body.title,
         content: req.body.content,
-        imageUrl,
-        videoUrl,
+        date: req.body.date ? new Date(req.body.date) : new Date(),
+        label: req.body.label,
+        imageUrls,
+        videoUrl
     });
 
     try {
         const newPost = await post.save();
+        // Notify subscribers
+        const subscribers = await Subscriber.find({});
+        const emailPromises = subscribers.map(subscriber =>
+            sendEmail(subscriber.email, 'New Post Alert', `A new post titled "${post.title}" has been published on the blog.`)
+        );
+        await Promise.all(emailPromises);
+
         res.status(201).json(newPost);
     } catch (err) {
         res.status(400).json({ message: err.message });
@@ -58,6 +81,5 @@ router.delete('/:id', getPost, async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
-
 
 module.exports = router;

@@ -1,0 +1,183 @@
+.manage-posts-container {
+    font-family: "Lora", serif;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    width: 100%;
+}
+
+.manage-posts-container h1 {
+    font-weight: 300;
+    width: 100%;
+    text-align: center;
+    font-size: 1.6rem;
+    margin: 5px;
+    color: #000;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 240px;
+    margin-top: 10px;
+}
+
+.search-icon-container {
+    position: absolute;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.search-icon {
+    color: #888;
+}
+
+.search-input {
+    padding: 10px 10px 10px 40px; /* Adjust padding to make space for the icon */
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.search-btn {
+    margin-left: 5px;
+    padding: 10px 20px;
+    background-color: #6200ea;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.manage-posts {
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:10px;
+    width: 100%
+}
+
+.manage-card {
+    width: calc(40% - 20px);
+    height: auto;
+    min-height: 30vh;
+    max-height: 30vh;
+    border-radius: 5px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 6px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    
+}
+
+.pagination button {
+    margin: 0 5px;
+    margin-bottom: 10px;
+    height: 40px;
+    width: 120px;
+    border: none;
+    background-color: #6200ea;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+.post-title {
+    background: linear-gradient(90deg, rgba(40, 184, 42, 0.672) 40%, rgb(243, 232, 11) 100%);
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.post-images {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+}
+
+.manage-card h2 {
+    margin: 5px;
+    width: 100%;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #000;
+}
+
+.manage-card p {
+    font-size: 0.8rem;
+    margin: 5px;
+    color: #000;
+}
+
+.menu-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 7px;
+    color: #000;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 35px; /* Adjust position as needed */
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.dropdown-menu button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    color: #333;
+}
+
+.dropdown-menu button:hover {
+    background-color: #f5f5f5;
+}
+
+.manage-card img {
+    margin-top: 10px;
+    width: 20vh;
+}
+
+.top-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}

@@ -1,10 +1,34 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import '../css/header.css';
 import backgroundVideo from '../resources/videos/2048452-hd_1920_1080_30fps.mp4';
 import { Search } from '@mui/icons-material';
 
 const Header = () => {
+    const [name, setName] = useState('');
+    const location = useLocation();
+
+    useEffect(() => {
+        switch (location.pathname) {
+            case '/posts':
+                setName('Blog');
+                break;
+            case '/about':
+                setName('About Me');
+                break;
+            case '/contact':
+                setName('Contact Us');
+                break;
+            case '/create':
+                setName('Create Post');
+                break;
+            case '/manage':
+                setName('Manage Posts');
+                break;
+            default:
+                setName('');
+        }
+    }, [location.pathname]);
     return (
         <>
             <header>
@@ -35,6 +59,9 @@ const Header = () => {
                     <p>My blog</p>
                     <h1>Stories & ideas</h1>
                     <p className="pStory">An insight to my life, for the one's who cares.</p>
+                </div>
+                <div className="page-title">
+                    <h1>{name}</h1>
                 </div>
             </div>
         </>

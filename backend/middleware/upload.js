@@ -30,7 +30,7 @@ const upload = multer({
         checkFileType(file, cb);
     }
 }).fields([
-    { name: 'image', maxCount: 1 },
+    { name: 'images', maxCount: 9 },
     { name: 'video', maxCount: 1 }
 ]);
 

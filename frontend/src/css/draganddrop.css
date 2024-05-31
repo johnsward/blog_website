@@ -1,0 +1,53 @@
+
+.dropzone {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 2px dashed #cccccc;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.dropzone p {
+    color: #cccccc;
+    font-size: 14px;
+    text-align: center;
+}
+
+.dropped-file {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.dropzone img,
+.dropzone video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure media covers the dropzone area */
+    border-radius: 5px;
+}
+
+.remove-file {
+    width: 40px;
+    height: 40px;
+    display: block;
+    position: absolute;
+    top: -20px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.2s ease-in-out;
+}
+
+
+.remove-file:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}

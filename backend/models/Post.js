@@ -9,8 +9,8 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    imageUrl: {
-        type: String,
+   imageUrls: { 
+        type: [String],
         required: false,
     },
     videoUrl: {
@@ -21,6 +21,10 @@ const postSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    label: {
+        type: String,
+        required: false,
+    }
 });
 
 module.exports = mongoose.model('Post', postSchema);
