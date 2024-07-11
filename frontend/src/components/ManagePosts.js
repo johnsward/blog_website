@@ -30,10 +30,7 @@ const ManagePosts = () => {
         setActivePost(activePost === postId ? null : postId);
     };
 
-    const handleEdit = (postId) => {
-        console.log("Edit post:", postId);
-        // Implement edit functionality here
-    };
+
 
     const handleRemove = async (postId) => {
         console.log("Remove post:", postId);
@@ -93,7 +90,6 @@ const ManagePosts = () => {
                         <MenuIcon className='menu-icon' onClick={() => handleMenuClick(post._id)} />
                         {activePost === post._id && (
                             <div className='dropdown-menu'>
-                                <button onClick={() => handleEdit(post._id)}>Edit</button>
                                 <button onClick={() => handleRemove(post._id)}>Remove</button>
                             </div>
                         )}

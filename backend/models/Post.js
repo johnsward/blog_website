@@ -13,8 +13,8 @@ const postSchema = new mongoose.Schema({
         type: [String],
         required: false,
     },
-    videoUrl: {
-        type: String,
+    videoUrls: {
+        type: [String],
         required: false,
     },
     date: {

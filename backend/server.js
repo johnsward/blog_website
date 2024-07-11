@@ -1,3 +1,4 @@
+// backend/server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -14,9 +15,11 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const postRoutes = require('./routes/posts');
 const subscriberRoutes = require('./routes/subscribers');
+const authRoutes = require('./routes/auth'); // Ensure this line is present
 
 app.use('/api/posts', postRoutes);
 app.use('/api/subscribers', subscriberRoutes);
+app.use('/api/auth', authRoutes); // Ensure this line is present
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))

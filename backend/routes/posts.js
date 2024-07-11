@@ -46,7 +46,7 @@ router.get('/', async (req, res) => {
 // Create a post
 router.post('/', upload, async (req, res) => {
     const imageUrls = req.files['images'] ? req.files['images'].map(file => `/uploads/${file.filename}`) : [];
-    const videoUrl = req.files['video'] ? `/uploads/${req.files['video'][0].filename}` : null;
+    const videoUrls = req.files['videos'] ? req.files['videos'].map(file => `/uploads/${file.filename}`) : [];
 
     const post = new Post({
         title: req.body.title,
@@ -54,7 +54,7 @@ router.post('/', upload, async (req, res) => {
         date: req.body.date ? new Date(req.body.date) : new Date(),
         label: req.body.label,
         imageUrls,
-        videoUrl
+        videoUrls
     });
 
     try {

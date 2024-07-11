@@ -10,7 +10,7 @@ const DragAndDrop = ({ onDrop, file, onRemove }) => {
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop: onDropHandler,
         accept: {
-            'image/*': ['.jpeg', '.jpg', '.png', '.gif'],
+            'image/*': ['.jpeg', '.jpg', '.png', '.gif', '.heic'],
             'video/*': ['.mp4', '.mov', '.avi']
         },
         multiple: false,
@@ -35,7 +35,7 @@ const DragAndDrop = ({ onDrop, file, onRemove }) => {
                 <p>Drag 'n' drop an image or video here, or click to select a file</p>
             )}
         </div>
-    );
+);
 };
 
 export default DragAndDrop;
