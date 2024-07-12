@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 const allowedOrigins = [
-  'https://francas-frontend.vercel.app', // Add any other allowed origins here
+  'https://francas.vercel.app', // Add any other allowed origins here
   'https://francas-backend.vercel.app' // If you have a custom domain
 ];
 
@@ -35,7 +35,7 @@ app.use('/api/posts', postRoutes);
 app.use('/api/subscribers', subscriberRoutes);
 app.use('/api/auth', authRoutes);
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
 
