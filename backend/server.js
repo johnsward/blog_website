@@ -10,12 +10,18 @@ const app = express();
 app.use(express.json());
 
 const allowedOrigins = [
-  'https://francas.vercel.app', // Add any other allowed origins here
-  'https://francas-backend.vercel.app' // If you have a custom domain
-];
-
-app.use(cors({
-    origin: '*', // Allow all origins for testing
+    'https://francas-45u1z5mf1-john-swards-projects.vercel.app', // Your frontend's Vercel URL
+    'https://francas-backend-bycceqdkt-john-swards-projects.vercel.app' // Your backend's Vercel URL
+  ];
+  
+  app.use(cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
   }));
   
@@ -26,19 +32,9 @@ const postRoutes = require('./routes/posts');
 const subscriberRoutes = require('./routes/subscribers');
 const authRoutes = require('./routes/auth');
 
-app.use('/api/posts', (req, res, next) => {
-    console.log('API Posts route accessed');
-    next();
-  }, postRoutes);
-  app.use('/api/subscribers', (req, res, next) => {
-    console.log('API Subscribers route accessed');
-    next();
-  }, subscriberRoutes);
-  app.use('/api/auth', (req, res, next) => {
-    console.log('API Auth route accessed');
-    next();
-  }, authRoutes);
-  
+app.use('/api/posts', postRoutes);
+app.use('/api/subscribers', subscriberRoutes);
+app.use('/api/auth', authRoutes);
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
