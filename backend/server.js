@@ -9,6 +9,7 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 // Update CORS configuration to allow requests from your frontend's origin
 const allowedOrigins = [
@@ -16,16 +17,7 @@ const allowedOrigins = [
   'https://francas-backend.vercel.app'
 ];
 
-app.use(cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    credentials: true,
-  }));
+
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
