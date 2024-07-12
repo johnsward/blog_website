@@ -15,15 +15,10 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-}));
+    origin: '*', // Allow all origins for testing
+    credentials: true,
+  }));
+  
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
@@ -31,9 +26,19 @@ const postRoutes = require('./routes/posts');
 const subscriberRoutes = require('./routes/subscribers');
 const authRoutes = require('./routes/auth');
 
-app.use('/api/posts', postRoutes);
-app.use('/api/subscribers', subscriberRoutes);
-app.use('/api/auth', authRoutes);
+app.use('/api/posts', (req, res, next) => {
+    console.log('API Posts route accessed');
+    next();
+  }, postRoutes);
+  app.use('/api/subscribers', (req, res, next) => {
+    console.log('API Subscribers route accessed');
+    next();
+  }, subscriberRoutes);
+  app.use('/api/auth', (req, res, next) => {
+    console.log('API Auth route accessed');
+    next();
+  }, authRoutes);
+  
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
