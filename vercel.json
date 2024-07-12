@@ -2,17 +2,17 @@
   "version": 2,
   "builds": [
     {
-      "src": "backend/server.js",
+      "src": "/backend/server.js",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": ["backend/routes/**", "backend/models/**", "backend/middleware/**"]
+        "includeFiles": ["/backend/routes/**", "/backend/models/**", "/backend/middleware/**"]
       }
     },
     {
-      "src": "frontend/package.json",
+      "src": "/frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "frontend/build"
+        "distDir": "/frontend/build"
       }
     }
   ],
