@@ -11,12 +11,6 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Update CORS configuration to allow requests from your frontend's origin
-const allowedOrigins = [
-  'https://francas-frontend.vercel.app', // Your frontend's origin
-  'https://francas-backend.vercel.app'
-];
-
 
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
