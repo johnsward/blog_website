@@ -12,8 +12,8 @@ app.use(express.json());
 
 // Update CORS configuration to allow requests from your frontend's origin
 const allowedOrigins = [
-  'https://francas-frontend.vercel.app', // Your frontend's origin
-  'https://francas-backend-fzvhz4bp3-john-swards-projects.vercel.app' // Your backend's origin
+  'https://francas-frontend-mqw0wtuoy-john-swards-projects.vercel.app', // Your frontend's origin
+  'https://francas-backend-8z0gy2umo-john-swards-projects.vercel.app' // Your backend's origin
 ];
 
 app.use(cors({
