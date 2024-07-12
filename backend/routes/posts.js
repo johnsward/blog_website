@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
 const Subscriber = require('../models/Subscriber');
-const upload = require('../middleware/Upload');
+const upload = require('../middleware/upload');
 const sendEmail = require('../utils/mailer');
 
 async function getPost(req, res, next) {
