@@ -9,7 +9,9 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: 'https://francas-backend-fzvhz4bp3-john-swards-projects.vercel.app/' // Use your actual Vercel frontend URL
+}));
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
