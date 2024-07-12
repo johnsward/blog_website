@@ -3,6 +3,3 @@ node_modules/
 
 # Ignore environment variables file
 .env
-
-# Ignore vercel configuration file
-.vercel
