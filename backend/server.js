@@ -37,6 +37,7 @@ app.use('/api/posts', postRoutes);
 app.use('/api/subscribers', subscriberRoutes);
 app.use('/api/auth', authRoutes); // Ensure this line is present
 
+console.log("MONGO_URI:", process.env.MONGODB_URI);
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
