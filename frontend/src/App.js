@@ -12,6 +12,7 @@ import PostDetail from './components/PostDetail';
 import ManagePosts from './components/ManagePosts';
 import PrivateRoute from './components/PrivateRoute';
 import AdminRoute from './components/AdminRoute';
+import About from './components/About';
 
 const App = () => {
     return (
@@ -42,6 +43,7 @@ const AppContent = () => {
                 <Route path="/admin/login" element={<AdminLogin />} />
                 <Route element={<PrivateRoute />}>
                     <Route path="/posts" element={<PostList />} />
+                    <Route path="/about" element={<About /> } />
                     <Route path="/posts/:id" element={<PostDetail />} />
                     <Route path="/" element={<PostList />} />
                 </Route>

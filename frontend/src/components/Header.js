@@ -40,7 +40,7 @@ const Header = () => {
         </div>
         <ul className="nav-links">
           <li><Link to="/posts" className={location.pathname === "/posts" ? "active" : ""}>Blogg</Link></li>
-          <li><Link to="/about" className={location.pathname === "/about" ? "active" : ""}>Om bloggen</Link></li>
+          <li><Link to="/about" className={location.pathname === "/about" ? "active" : ""}>Varför?</Link></li>
           {isAuthenticated && (
             <li>
               <button onClick={handleLogout}>Logga ut</button>

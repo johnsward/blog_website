@@ -229,9 +229,8 @@ const PostList = () => {
       <div className="footer">
         <div className="footer-content">
           <div className="footer-links">
-            <a href="/posts">Blog</a>
-            <a href="/about">About</a>
-            <a href="/contact">Contact</a>
+            <a href="/posts">Blogg</a>
+            <a href="/about">Om bloggen</a>
           </div>
           <div className="footer-social">
             <a href="https://www.facebook.com" target="_blank" rel="noreferrer">

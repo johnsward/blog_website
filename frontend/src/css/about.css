@@ -1,0 +1,70 @@
+.about-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    padding: 100px 0;
+    gap: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow-y: hidden;
+}
+
+.image-container {
+    position: relative;
+    width: 50%;
+    height: 100%;
+}
+
+.overlapping-image {
+    position: absolute;
+    top: 40%;
+    left: 25%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.overlapping-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+    border-radius: 8px;
+}
+
+.image-container img {
+    width: 60%;
+    height: 80%;
+    object-fit: cover;
+    padding: 20px;
+}
+
+
+.about-content {
+    width: 60%;
+}
+
+.about-content h1 {
+    padding: 0 20px;
+    color: #f44454;
+    font-weight: 700;
+    font-size: 4rem;
+}
+
+.about-content p {
+    padding: 0 20px;
+    color: #dcdcdc;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    width: 80%;
+}
+
+.about-container .background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    
+}
