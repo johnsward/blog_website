@@ -1,3 +1,4 @@
+// backend/routes/auth.js
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
@@ -60,7 +61,13 @@ router.post('/validateToken', async (req, res) => {
 
     try {
         const decoded = jwt.verify(token, jwtSecret);
-        const user = await User.findById(decoded.id);
+
+        let user;
+        if (decoded.role === 'admin') {
+            user = await User.findById(decoded.id);
+        } else {
+            user = { role: 'user' }; // For regular users, we only have role information
+        }
 
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
