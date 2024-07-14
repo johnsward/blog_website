@@ -8,19 +8,13 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-
-const allowedOrigins = [
-  'https://francas.vercel.app', // Your frontend's Vercel domain
-  'https://francas-backend.vercel.app' // Your backend's Vercel domain (if applicable)
-];
-
 app.use(cors());
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-const postRoutes = require('./routes/posts');
-const subscriberRoutes = require('./routes/subscribers');
-const authRoutes = require('./routes/auth');
+const postRoutes = require('../routes/posts');
+const subscriberRoutes = require('../routes/subscribers');
+const authRoutes = require('../routes/auth');
 
 app.use('/api/posts', postRoutes);
 app.use('/api/subscribers', subscriberRoutes);
