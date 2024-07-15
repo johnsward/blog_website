@@ -11,7 +11,9 @@ app.use(express.json());
 app.use(cors());
 
 // Root route to check if the server is running
-app.get("/", (req, res) => res.send("Express on Vercel"));
+app.get('/', (req, res) => {
+    res.send('Hello, World!');
+  });
 
 // Serve static files from the 'uploads' directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
