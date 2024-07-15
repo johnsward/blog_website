@@ -3,7 +3,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #f44454;
+    background-color: #fc9fc7;
     color: #000;
     z-index: 1; /* Ensure header is above the video */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: add a shadow for better separation */
@@ -51,8 +51,7 @@ header nav ul {
     position: relative;
     text-decoration: none;
     font-size: 1rem;
-    
-    color: #000;
+    color: #fff;
     font-weight: 600;
     transition: color 0.3s ease;
   }
@@ -166,6 +165,15 @@ header nav .contact {
     font-weight: 300;
     color: #fff;
     background-color: rgba(0, 0, 0, 0.2);
+}
+
+.header button {
+    background-color: #f44454;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 
