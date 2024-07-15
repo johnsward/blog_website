@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 const AuthContext = createContext(null);
@@ -6,34 +6,34 @@ const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true); // Add loading state
-
-    const validateToken = async (token) => {
-        try {
-            const response = await axios.post(
-                `${process.env.REACT_APP_API_URL}/auth/validateToken`,
-                { token }
-            );
-            const { user: userFromResponse } = response.data;
-            setIsAuthenticated(true);
-            setUser(userFromResponse);
-            localStorage.setItem("user", JSON.stringify(userFromResponse));
-        } catch (error) {
-            console.error("Token validation error:", error);
-            logout();
-        } finally {
-            setLoading(false); // Validation done, stop loading
-        }
-    };
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        const validateToken = async (token) => {
+            try {
+                const response = await axios.post(
+                    `${process.env.REACT_APP_API_URL}/auth/validateToken`,
+                    { token }
+                );
+                const { user: userFromResponse } = response.data;
+                setIsAuthenticated(true);
+                setUser(userFromResponse);
+                localStorage.setItem("user", JSON.stringify(userFromResponse));
+            } catch (error) {
+                console.error("Token validation error:", error);
+                logout();
+            } finally {
+                setLoading(false);
+            }
+        };
+
         const token = localStorage.getItem("token");
         if (token) {
-            validateToken(token); // Use validateToken directly
+            validateToken(token);
         } else {
-            setLoading(false); // No token, stop loading
+            setLoading(false);
         }
-    }, [validateToken]); // Include validateToken in the dependency array
+    }, []); // Empty dependency array because validateToken does not change
 
     const login = async (email, password, isAdmin = false) => {
         const endpoint = isAdmin ? "/auth/admin/login" : "/auth/login";
@@ -64,10 +64,6 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(false);
         setUser(null);
     };
-
-    if (loading) {
-        return <div>Loading...</div>; // Add a loading state while validation is happening
-    }
 
     return (
         <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
