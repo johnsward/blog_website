@@ -3,7 +3,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
 
-// Setup environment variables
+// Load environment variables
 dotenv.config();
 
 const app = express();
@@ -14,13 +14,11 @@ app.use(cors()); // Enable CORS
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Setup API routes
-const postRoutes = require('./api/posts'); // Adjust path as necessary
-const subscriberRoutes = require('./api/subscribers'); // Adjust path as necessary
-const authRoutes = require('./api/auth'); // Adjust path as necessary
+// Assuming each route handler is a serverless function and will be deployed as such
+app.use('/api/posts', require('./api/posts'));
+app.use('/api/subscribers', require('./api/subscribers'));
+app.use('/api/auth', require('./api/auth')); // This should include both login and validateToken routes
 
-app.use('/api/posts', postRoutes);
-app.use('/api/subscribers', subscriberRoutes);
-app.use('/api/auth', authRoutes);
-
-// Export the configured Express app
+// Note: No need to set up a listener or database connection directly here
+// Export the configured Express app for Vercel to use as serverless functions
 module.exports = app;
