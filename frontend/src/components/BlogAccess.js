@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext"; // Import useAuth
 import "../css/blogaccess.css";
-import Lock from "@mui/icons-material/Lock";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const BlogAccess = () => {

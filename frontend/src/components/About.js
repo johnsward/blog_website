@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "../css/about.css";
 
 const About = () => {
@@ -9,9 +9,9 @@ const About = () => {
         Your browser does not support the video tag.
       </video>
       <div className="image-container">
-        <img src="IMG_8447.jpeg" />
-        <div className="overlapping-image">
-        <img src="IMG_8451.jpeg" />
+        <img src="IMG_8447.jpeg" alt="Franca"/>
+        <div className="overlapping-image" alt="Franca">
+        <img src="IMG_8451.jpeg" alt="Franca"/>
       </div>
       </div>
       

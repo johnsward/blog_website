@@ -25,7 +25,7 @@ const DragAndDrop = ({ onDrop, file, onRemove }) => {
                     {file.type.startsWith('image/') ? (
                         <img src={URL.createObjectURL(file)} alt="Dropped" className="dropped-file" />
                     ) : (
-                        <video src={URL.createObjectURL(file)} controls className="dropped-file" />
+                        <video src={URL.createObjectURL(file)} controls className="dropped-file" alt="dropped" />
                     )}
                     <button className="remove-file" onClick={onRemove}>X</button>
                 </>

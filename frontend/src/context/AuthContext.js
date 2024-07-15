@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
         } else {
             setLoading(false); // No token, stop loading
         }
-    }, []);
+    }, [validateToken]);
 
     const validateToken = async (token) => {
         try {
