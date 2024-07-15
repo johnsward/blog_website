@@ -13,7 +13,7 @@ app.use(cors());
 // Root route to check if the server is running
 app.get('/', (req, res) => {
     res.send('Hello, World!');
-  });
+});
 
 // Serve static files from the 'uploads' directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -33,12 +33,9 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
     .catch(err => console.log(err));
 
 // Start the server
-const port = process.env.PORT;
-if (port == null || port == "") {
-    port = 8000;
-  }
+const port = process.env.PORT || 8000;
 app.listen(port, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${port}`);
 });
 
 module.exports = app;
