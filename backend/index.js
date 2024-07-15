@@ -17,9 +17,9 @@ app.get("/", (req, res) => res.send("Express on Vercel"));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Import and use routes
-const postRoutes = require('../routes/posts');
-const subscriberRoutes = require('../routes/subscribers');
-const authRoutes = require('../routes/auth');
+const postRoutes = require('./routes/posts');
+const subscriberRoutes = require('./routes/subscribers');
+const authRoutes = require('./routes/auth');
 
 app.use('/api/posts', postRoutes);
 app.use('/api/subscribers', subscriberRoutes);
