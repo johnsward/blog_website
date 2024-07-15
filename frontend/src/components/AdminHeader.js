@@ -4,8 +4,8 @@ import "../css/adminheader.css";
 import { useAuth } from "../context/AuthContext";
 
 const AdminHeader = () => {
-  const [setName] = useState("");
-  const { logout } = useAuth(); // Using the authentication context
+  const [name, setName] = useState("");
+  const { isAuthenticated, logout } = useAuth(); // Using the authentication context
   const location = useLocation();
   const navigate = useNavigate();
 

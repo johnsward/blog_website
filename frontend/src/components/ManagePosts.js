@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { fetchPosts, deletePost } from '../services/postService';
-import Header from './Header';
 import '../css/manageposts.css';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';

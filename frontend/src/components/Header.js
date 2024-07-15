@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext"; // Adjust the import path as n
 import "../css/header.css";
 
 const Header = () => {
-  const [setName] = useState("");
+  const [name, setName] = useState("");
   const { isAuthenticated, logout } = useAuth(); // Using the authentication context
   const location = useLocation();
   const navigate = useNavigate();
