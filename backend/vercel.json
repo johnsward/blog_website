@@ -1,11 +1,15 @@
 {
     "version": 2,
-    "builds": [{
-        "src": "/api/**/*.js",
-        "use": "@vercel/node"
-    }],
-    "routes": [{
-        "src": "/api/(.*)",
-        "dest": "/api/$1.js"
-    }]
+    "routes": [
+        { "src": "/api/posts", "dest": "/api/posts.js" },
+        { "src": "/api/login", "dest": "/api/login.js" },
+        { "src": "/api/adminLogin", "dest": "/api/adminLogin.js"},
+        { "src": "/api/validateToken", "dest": "/api/validateToken.js"},
+        { "src": "/api/subscribers", "dest": "/api/subscribers.js"},
+        { "src": "/api/index", "dest": "/api/index.js"}
+ 
+    ],
+    "builds": [
+        { "src": "/api/**/*.js", "use": "@vercel/node" }
+    ]
 }
