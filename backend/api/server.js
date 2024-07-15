@@ -24,9 +24,9 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
 
-const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+// const PORT = process.env.PORT || 5001;
+// app.listen(PORT, () => {
+//     console.log(`Server is running on port ${PORT}`);
+// });
 
 module.exports = app;
