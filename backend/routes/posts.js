@@ -5,14 +5,20 @@ const Subscriber = require('../models/Subscriber');
 const upload = require('../middleware/upload');
 const sendEmail = require('../utils/mailer');
 
-router.get('/', async (req, res) => {
+async function getPost(req, res, next) {
+    let post;
     try {
-        const posts = await Post.find();
-        res.json(posts);
+        post = await Post.findById(req.params.id);
+        if (post === null) {
+            return res.status(404).json({ message: 'Cannot find post' });
+        }
     } catch (err) {
-        res.status(500).json({ message: err.message });
+        return res.status(500).json({ message: err.message });
     }
-});
+
+    res.post = post;
+    next();
+}
 
 //Get a single post by ID
 router.get('/:id', async (req, res) => {
