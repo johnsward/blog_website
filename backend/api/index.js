@@ -15,9 +15,9 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Setup API routes
 // Assuming each route handler is a serverless function and will be deployed as such
-app.use('/api/posts', require('./api/posts'));
-app.use('/api/subscribers', require('./api/subscribers'));
-app.use('/api/auth', require('./api/auth')); // This should include both login and validateToken routes
+app.use('/api/posts', require('./posts'));
+app.use('/api/subscribers', require('./subscribers'));
+app.use('/api/auth', require('./auth')); // This should include both login and validateToken routes
 
 // Note: No need to set up a listener or database connection directly here
 // Export the configured Express app for Vercel to use as serverless functions
