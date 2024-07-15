@@ -1,42 +1,26 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
 
-dotenv.config(); // Load environment variables
+// Setup environment variables
+dotenv.config();
 
 const app = express();
-app.use(express.json());
-app.use(cors());
-
-// Root route to check if the server is running
-app.get("/", (req, res) => res.send("Express on Vercel"));
+app.use(express.json()); // Support JSON-encoded bodies
+app.use(cors()); // Enable CORS
 
 // Serve static files from the 'uploads' directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Import and use routes
-const postRoutes = require('../routes/posts');
-const subscriberRoutes = require('../routes/subscribers');
-const authRoutes = require('../routes/auth');
+// Setup API routes
+const postRoutes = require('./api/posts'); // Adjust path as necessary
+const subscriberRoutes = require('./api/subscribers'); // Adjust path as necessary
+const authRoutes = require('./api/auth'); // Adjust path as necessary
 
 app.use('/api/posts', postRoutes);
 app.use('/api/subscribers', subscriberRoutes);
 app.use('/api/auth', authRoutes);
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.log(err));
-
-// Start the server
-const port = process.env.PORT;
-if (port == null || port == "") {
-    port = 8000;
-  }
-app.listen(port, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
-
+// Export the configured Express app
 module.exports = app;
