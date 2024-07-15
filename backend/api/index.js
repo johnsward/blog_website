@@ -9,6 +9,7 @@ dotenv.config(); // Load environment variables
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.get("/", (req, res) => res.send("Express on Vercel"));
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
