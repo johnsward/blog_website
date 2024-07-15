@@ -8,36 +8,32 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true); // Add loading state
 
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (token) {
-            validateToken(token);
-        } else {
-            setLoading(false); // No token, stop loading
-        }
-    }, []);
-
     const validateToken = async (token) => {
         try {
             const response = await axios.post(
                 `${process.env.REACT_APP_API_URL}/auth/validateToken`,
                 { token }
             );
-            if (response.status === 200) {
-                const userFromResponse = response.data.user;
-                setIsAuthenticated(true);
-                setUser(userFromResponse);
-                localStorage.setItem("user", JSON.stringify(userFromResponse));
-            } else {
-                logout();
-            }
-        } catch (e) {
-            console.error("Token validation error:", e);
+            const { user: userFromResponse } = response.data;
+            setIsAuthenticated(true);
+            setUser(userFromResponse);
+            localStorage.setItem("user", JSON.stringify(userFromResponse));
+        } catch (error) {
+            console.error("Token validation error:", error);
             logout();
         } finally {
             setLoading(false); // Validation done, stop loading
         }
     };
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            validateToken(token); // Use validateToken directly
+        } else {
+            setLoading(false); // No token, stop loading
+        }
+    }, [validateToken]); // Include validateToken in the dependency array
 
     const login = async (email, password, isAdmin = false) => {
         const endpoint = isAdmin ? "/auth/admin/login" : "/auth/login";
@@ -48,22 +44,17 @@ export const AuthProvider = ({ children }) => {
                 `${process.env.REACT_APP_API_URL}${endpoint}`,
                 payload
             );
-            const { token, user } = response.data;
-
+            const { token, user: userFromResponse } = response.data;
             localStorage.setItem("token", token);
-            localStorage.setItem("user", JSON.stringify(user));
+            localStorage.setItem("user", JSON.stringify(userFromResponse));
             setIsAuthenticated(true);
-            setUser(user);
-
-            return Promise.resolve(token);
+            setUser(userFromResponse);
+            return token;
         } catch (error) {
-            console.error(
-                "Login error:",
-                error.response ? error.response.data : "No response"
-            );
+            console.error("Login error:", error);
             setIsAuthenticated(false);
             setUser(null);
-            return Promise.reject(error);
+            throw error;
         }
     };
 

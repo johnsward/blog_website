@@ -53,7 +53,7 @@ const PostDetail = () => {
           <div key={index} className="file-item" onClick={() => handleMediaClick(index)}>
             <img
               src={`http://localhost:5001${imageUrl}`}
-              alt={`Image ${index}`}
+              alt="Beautiful image"
             />
           </div>
         ))}

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import "../css/postlist.css";
 import RightArrowIconIos from "@mui/icons-material/ArrowForwardIos";
 import SubscribeForm from "./SubscribeForm";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
