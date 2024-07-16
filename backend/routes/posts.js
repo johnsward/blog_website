@@ -34,7 +34,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Get all posts
-router.get('/', async (req, res) => {
+router.get('/api/posts', async (req, res) => {
     try {
         const posts = await Post.find();
         res.json(posts);
