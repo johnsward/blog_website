@@ -8,17 +8,12 @@ const User = require('../models/User');
 const blogAccessPasswordHash = process.env.BLOG_ACCESS_PASSWORD_HASH;
 const jwtSecret = process.env.JWT_SECRET;
 
-console.log("BLOG_ACCESS_PASSWORD_HASH:", blogAccessPasswordHash);
-console.log("JWT_SECRET:", jwtSecret);
-
 // Regular user login
 router.post('/login', async (req, res) => {
     const { password } = req.body;
-    console.log("Received password:", password);
 
     try {
         const isMatch = await bcrypt.compare(password, blogAccessPasswordHash);
-        console.log("Password match:", isMatch);
         if (isMatch) {
             const token = jwt.sign({ role: 'user' }, jwtSecret, { expiresIn: '1h' });
             res.status(200).json({ token, user: { role: 'user' } }); // Include user data
@@ -38,29 +33,24 @@ router.post('/admin/login', async (req, res) => {
     try {
         const user = await User.findOne({ email, role: 'admin' });
         if (!user) {
-            console.log('No admin user found for email:', email);
             return res.status(401).json({ message: 'Access Denied' });
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
-        console.log("Password match for admin:", isMatch);
         if (!isMatch) {
-            console.log('Password mismatch for admin user:', email);
             return res.status(401).json({ message: 'Invalid credentials' });
         }
 
-        const token = jwt.sign({ id: user._id, role: user.role }, jwtSecret, { expiresIn: '1h' });
+        const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
         res.json({ token, user: { id: user._id, email: user.email, role: user.role } });
     } catch (err) {
-        console.error('Login error for admin:', err);
         res.status(500).json({ message: 'Internal server error', error: err.message });
     }
 });
 
-// Token validation endpoint
+
 router.post('/validateToken', async (req, res) => {
     const { token } = req.body;
-    console.log("Received token:", token);
 
     if (!token) {
         return res.status(401).json({ message: 'No token provided' });
@@ -68,7 +58,6 @@ router.post('/validateToken', async (req, res) => {
 
     try {
         const decoded = jwt.verify(token, jwtSecret);
-        console.log("Decoded token:", decoded);
 
         let user;
         if (decoded.role === 'admin') {
