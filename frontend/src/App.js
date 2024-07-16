@@ -26,7 +26,7 @@ const App = () => {
 
 const AppContent = () => {
     const location = useLocation();
-    const { isAuthenticated, loading } = useAuth();
+    const { isAuthenticated, user, loading } = useAuth();
 
     if (loading) {
         return <div>Loading...</div>; // Display loading while authentication state is being resolved

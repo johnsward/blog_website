@@ -20,7 +20,7 @@ async function getPost(req, res, next) {
     next();
 }
 
-// Get a single post by ID
+//Get a single post by ID
 router.get('/:id', async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
@@ -36,7 +36,7 @@ router.get('/:id', async (req, res) => {
 // Get all posts
 router.get('/', async (req, res) => {
     try {
-        const posts = await Post.find();
+        const posts = await Post.find({});
         res.json(posts);
     } catch (err) {
         res.status(500).json({ message: err.message });
