@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext"; // Adjust the import path as necessary
-import "../css/header.css";
+import "../css/adminheader.css";
+import { useAuth } from "../context/AuthContext";
 
-const Header = () => {
+const AdminHeader = () => {
   const { isAuthenticated, logout } = useAuth(); // Using the authentication context
   const location = useLocation();
   const navigate = useNavigate();
@@ -11,22 +11,25 @@ const Header = () => {
   useEffect(() => {
     let name = "";
     switch (location.pathname) {
-      case "/posts":
-        name = "Blogg";
+      case "/admin/posts":
+        name = "Blog";
         break;
-      case "/about":
-        name = "Varför?";
+      case "/admin/create":
+        name = "Create Post";
+        break;
+      case "/admin/manage":
+        name = "Manage Posts";
         break;
       default:
         name = "";
     }
-    document.title = name !== "" ? `Franca's - ${name}` : "Franca's"; // Set document title based on page
+    document.title = `Admin - ${name}`; // Set document title based on page
   }, [location.pathname]); // Add location.pathname as dependency to useEffect
 
   const handleLogout = () => {
     logout();
-    navigate("/login"); // Redirect to login page after logout
-  };
+    navigate("/admin/login");
+  }
 
   return (
     <header>
@@ -38,24 +41,19 @@ const Header = () => {
         </div>
         <ul className="nav-links">
           <li>
-            <Link to="/posts" className={location.pathname === "/posts" ? "active" : ""}>
-              Blogg
-            </Link>
+            <Link to="/admin/posts" className={location.pathname === "/admin/posts" ? "active" : ""}>Blogg</Link>
           </li>
           <li>
-            <Link to="/about" className={location.pathname === "/about" ? "active" : ""}>
-              Varför?
-            </Link>
+            <Link to="/admin/create" className={location.pathname === "/admin/create" ? "active" : ""}>Skapa inlägg</Link>
           </li>
-          {isAuthenticated && (
-            <li>
-              <button onClick={handleLogout}>Logga ut</button>
-            </li>
-          )}
+          <li>
+            <Link to="/admin/manage" className={location.pathname === "/admin/manage" ? "active" : ""}>Hantera inlägg</Link>
+          </li>
+          <button onClick={handleLogout}>Logga ut</button>
         </ul>
       </nav>
     </header>
   );
 };
 
-export default Header;
+export default AdminHeader;
