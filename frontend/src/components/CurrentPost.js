@@ -1,6 +1,8 @@
 import React from "react";
 import '../currentpost.css';
 
+const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5001';
+
 const CurrentPost = ({ post }) => {
   return (
     <div className="current-post-container">
@@ -10,7 +12,7 @@ const CurrentPost = ({ post }) => {
             {post.imageUrls.map((imageUrl, index) => (
               <img
                 key={index}
-                src={`http://localhost:5001${imageUrl}`}
+                src={`${baseUrl}${imageUrl}`}
                 alt={`${post.title} ${index + 1}`}
                 className="post-image"
               />

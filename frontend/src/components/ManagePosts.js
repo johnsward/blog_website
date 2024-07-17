@@ -4,6 +4,8 @@ import '../css/manageposts.css';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 
+const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5001';
+
 const ManagePosts = () => {
     const [posts, setPosts] = useState([]);
     const [filteredPosts, setFilteredPosts] = useState([]); 
@@ -97,7 +99,7 @@ const ManagePosts = () => {
                         {post.imageUrls && post.imageUrls.length > 0 && (
                             <div className="post-images">
                                 {post.imageUrls.map((imageUrl, index) => (
-                                    <img key={index} src={`http://localhost:5001${imageUrl}`} alt={`${post.title} ${index + 1}`} className="post-image" />
+                                    <img key={index} src={`${baseUrl}${imageUrl}`} alt={`${post.title} ${index + 1}`} className="post-image" />
                                 ))}
                             </div>
                         )}

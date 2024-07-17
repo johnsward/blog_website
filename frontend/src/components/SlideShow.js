@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import "../css/slideshow.css";
 
+const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5001';
+
 const SlideShow = ({ post, initialSlideIndex }) => {
   const [slideIndex, setSlideIndex] = useState(initialSlideIndex);
 
@@ -37,10 +39,10 @@ const SlideShow = ({ post, initialSlideIndex }) => {
           }}
         >
           {index < post.imageUrls.length ? (
-            <img src={`http://localhost:5001${url}`} alt={post.title} />
+            <img src={`${baseUrl}${url}`} alt={post.title} />
           ) : (
             <video controls>
-              <source src={`http://localhost:5001${url}`} type="video/mp4" />
+              <source src={`${baseUrl}${url}`} type="video/mp4" />
             </video>
           )}
         </div>

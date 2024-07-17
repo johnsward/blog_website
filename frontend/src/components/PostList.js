@@ -8,6 +8,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5001';
+
 const PostList = () => {
   const [allPosts, setAllPosts] = useState([]);
   const [displayPosts, setDisplayPosts] = useState([]);
@@ -89,7 +91,7 @@ const PostList = () => {
             <div
               className="latest-post"
               style={{
-                backgroundImage: `url(http://localhost:5001${latestPost.imageUrls[0]})`,
+                backgroundImage: `url(${baseUrl}${latestPost.imageUrls[0]})`,
               }}
             >
               <div className="latest-info-container">
@@ -126,7 +128,7 @@ const PostList = () => {
                 key={post._id}
                 className="sidepost"
                 style={{
-                  backgroundImage: `url(http://localhost:5001${post.imageUrls[0]})`,
+                  backgroundImage: `url(${baseUrl}${post.imageUrls[0]})`,
                 }}
               >
                 <div className="sidepost-content">
@@ -184,7 +186,7 @@ const PostList = () => {
           {displayPosts.map((filteredPost) => (
             <div key={filteredPost._id} className="grid-post">
               <img
-                src={`http://localhost:5001${filteredPost.imageUrls[0]}`}
+                src={`${baseUrl}${filteredPost.imageUrls[0]}`}
                 alt={filteredPost.title}
                 className="grid-image"
               />
