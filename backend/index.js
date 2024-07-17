@@ -9,7 +9,9 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:3000', 'https://francas.onrender.com']
+}));
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
